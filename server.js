@@ -15,10 +15,10 @@ app.get('/', async (req, res) => {
     console.log(lessons);
 })
 
-app.get('/plan', async (req, res) => {
+app.get('/plan/:planURL', async (req, res) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto("http://plan.ckziu.jaworzno.pl/?classid=BF0B9B0E2C34F558");
+    await page.goto(req.params.planURL);
     dayLength = (await page.$$eval(".hours", options => options.map(option => {
         return option.children.length - 1;
     }) ));
