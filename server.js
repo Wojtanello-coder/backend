@@ -11,7 +11,7 @@ app.get('/', async (req, res) => {
     lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href])}));
     await browser.close();
 
-    res.json(lessons);
+    res.send(lessons);
     console.log(lessons);
 })
 
@@ -34,7 +34,7 @@ app.get('/plan', async (req, res) => {
     }) ));
     await browser.close();
     dayLength = dayLength[0];
-    res.json({ "lesson": lessons, "dayLength": dayLength });
+    res.send({ "lesson": lessons, "dayLength": dayLength });
     console.log({ "lesson": lessons, "dayLength": dayLength });
 })
 app.listen(4001);
