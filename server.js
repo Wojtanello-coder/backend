@@ -24,16 +24,22 @@ app.get('/plan/:type/:planUrl', async (req, res) => {
         return option.children.length - 1;
     }) ));
     console.log(req.params.type)
-    let lessons = await page.$$eval(".card", options => options.map(option => { // ".lesson-1,.lesson-2"
-    return table;
+    //return table;
+    let lessons;
     switch (req.params.type) {
         case "classid": // TBA
-    // let table = []
-    //         //table.push(option);
-    // for (let j = 0; j < option.children.length; j++) {
-    //     for (const i in [0,1,2,3]) {
-    //         table.push(option.children[j].children[4].children[0].children[i].innerHTML.trim())//
-    //     }
+            console.log("test");
+            lessons = await page.$$eval(".card", options => options.map(option => { // ".lesson-1,.lesson-2"
+                let table = []
+                        //table.push(option);
+                for (let j = 0; j < option.children.length; j++) {
+                    for (const i in [0,1,2,3]) {
+                        table.push(option.children[j].children[4].children[0].children[i].innerHTML.trim());//
+                    }
+                }
+                return table;
+            }));
+            break;
     // }
             // let table = []
             
@@ -50,10 +56,21 @@ app.get('/plan/:type/:planUrl', async (req, res) => {
             //         table.push(childs.children[0].children[i].innerHTML.trim())//
             //     }
             // }
-            return table;
-        }) );
-            break;
         case "teacherid":
+            
+            lessons = await page.$$eval(".card", options => options.map(option => { // ".lesson-1,.lesson-2"
+                let table = []
+                        //table.push(option);
+                for (let j = 0; j < option.children.length; j++) {
+                    if (option.children[0].children[3]!=null) {
+                        for (const i in [0,1,2,3]) {
+                            table.push(option.children[0].children[i].innerHTML.trim());//
+                        }
+                    }
+                }
+                return table;
+            }));
+            break;
             // console.log("test");
             // console.log(page);
             // lessons = await page.$$eval(".card", options => console.log("true"));
@@ -68,11 +85,12 @@ app.get('/plan/:type/:planUrl', async (req, res) => {
         //}) );0
     
         default:
+            lessons = [];
             break;
-    }));
+    }
     await browser.close();
     dayLength = dayLength[0];
     res.send({ "lesson": lessons, "dayLength": dayLength });
     console.log({ "lesson": lessons, "dayLength": dayLength });
-})
+});
 app.listen(4001);
