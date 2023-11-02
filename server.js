@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 
 app.get('/', async (req, res) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     await page.goto("http://plan.ckziu.jaworzno.pl/");
     let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
@@ -16,7 +16,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/plan/:type/:planUrl', async (req, res) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     console.log("http://plan.ckziu.jaworzno.pl/?" + req.params.type + "=" + req.params.planUrl);
     await page.goto("http://plan.ckziu.jaworzno.pl/?" + req.params.type + "=" + req.params.planUrl);
@@ -96,16 +96,24 @@ app.get('/plan/:type/:planUrl', async (req, res) => {
 
 
 app.get('/zastepstwa', async (req, res) => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     console.log();
     await page.goto("https://www.ckziu.jaworzno.pl/zastepstwa/");
-    dayLength = (await page.$$eval(".entry", options => options.map(option => {
-        return option;
+    replacements = (await page.$$eval(".entry", divs => divs.map(div => {
+        let table = [];
+        let tbody = div.children[8].children[0];
+
+        for (let i = 1; i < tbody.children.length; i++) {
+            //console.log(tbody.children[i].innerHTML.trim());
+            table.push(tbody.children[i].children[0].innerHTML.trim())
+        }
+        return table;
     }) ));
-    console.log(dayLength);
+    //html = (await page.$$eval("body", divs => divs.map(div => div)));
+    console.log(replacements);
     await browser.close();
-    res.send(dayLength);
+    res.send(replacements);
     
 });
 app.listen(4001);
