@@ -93,4 +93,19 @@ app.get('/plan/:type/:planUrl', async (req, res) => {
     res.send({ "lesson": lessons, "dayLength": dayLength });
     console.log({ "lesson": lessons, "dayLength": dayLength });
 });
+
+
+app.get('/zastepstwa', async (req, res) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    console.log();
+    await page.goto("https://www.ckziu.jaworzno.pl/zastepstwa/");
+    dayLength = (await page.$$eval(".entry", options => options.map(option => {
+        return option;
+    }) ));
+    console.log(dayLength);
+    await browser.close();
+    res.send(dayLength);
+    
+});
 app.listen(4001);
