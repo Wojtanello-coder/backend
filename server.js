@@ -2,14 +2,13 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const { Replacement } = require('./replacement');
+const Reqs = require('./puppeteer');
 app.use(cors());
 
 app.get('/', async (req, res) => {
-    const browser = await puppeteer.launch({ headless: "new" });
-    const page = await browser.newPage();
-    await page.goto("http://plan.ckziu.jaworzno.pl/");
-    let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
-    await browser.close();
+    let lessons = Reqs.GetClassLinks("http://plan.ckziu.jaworzno.pl/");
+    
 
     res.send(lessons);
     console.log(lessons);
@@ -102,11 +101,13 @@ app.get('/zastepstwa', async (req, res) => {
     await page.goto("https://www.ckziu.jaworzno.pl/zastepstwa/");
     replacements = (await page.$$eval(".entry", divs => divs.map(div => {
         let table = [];
-        let tbody = div.children[8].children[0];
-
+        let tbody = div.children[div.children.length-2].children[0];
+        //table.push(tbody.innerHTML.trim());
+        let r = Replacement();
+        
         for (let i = 1; i < tbody.children.length; i++) {
             //console.log(tbody.children[i].innerHTML.trim());
-            table.push(tbody.children[i].children[0].innerHTML.trim())
+            table.push(tbody.children[i].children[1].innerHTML.trim())
         }
         return table;
     }) ));

@@ -1,0 +1,54 @@
+[
+    {
+        "id": 0,
+        "date": "03-11-2023 13:46:15",
+        "plan": [
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ],
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ],
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ],
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ]
+        ] 
+    },
+    {
+        "id": 1,
+        "date": "03-11-2023 13:48:01",
+        "plan": [
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ],
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ],
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ],
+            [ 
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
+                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
+            ]
+        ] 
+    }
+]
