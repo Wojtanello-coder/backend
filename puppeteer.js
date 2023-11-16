@@ -17,17 +17,17 @@ class request {
 
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
-        console.log(link + "?" + type + "=" + url);
+        //console.log(link + "?" + type + "=" + url);
         await page.goto(link + "?" + type + "=" + url);
         let dayLength = (await page.$$eval(".hours", options => options.map(option => {
             return option.children.length - 1;
         }) ));
-        console.log(type)
+        //console.log(type)
         //return table;
         let lessons;
         switch (type) {
             case "classid":
-                console.log("test");
+                //console.log("test");
                 lessons = await page.$$eval(".card", options => options.map(option => { // ".lesson-1,.lesson-2"
                     let table = []
                             //table.push(option);
