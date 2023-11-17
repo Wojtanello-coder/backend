@@ -72,18 +72,20 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        let substitutionObject = (await page.$$eval(".entry", divs => divs.map(div => {
+        let substitutionObject = (await page.$$eval(".entry>table>tbody", divs => divs.map(tbody => {
             let table = [];
             let subTable = [];
-            let tbody = div.children[div.children.length-2].children[0];
             //let r = Replacement();
+            //subTable = tbody.innerHTML
             
+            let className = "";
             for (let i = 1; i < tbody.children.length; i++) {
                 let subObj = {};
                 //     "class": "",
                 //     "teacher": "",
                 //     "hour": 0,
                 //     "subject": "",
+                //     "room": "",
                 //     "cancelled": false,
                 //     "substitution": "",
                 //     "subHour": 0,
@@ -91,10 +93,10 @@ class request {
                 //     "subRoom": ""
 
                 // }
-                let tbody_inner = tbody.children[i];
-                if (tbody_inner.children.length == 5) {
-                    console.log("5");
+                let tbody_inner = tbody.children[i]; // div about single sub (has data)
+                if (tbody_inner.children.length == 5) { // 5 is when the first is klass
                     table.push([]);
+                    className = tbody_inner.children[0].innerHTML.trim()
                     table.at(-1).push(tbody_inner.children[1].innerHTML.trim());
                 }
                 else {
@@ -103,19 +105,27 @@ class request {
                 let len = tbody_inner.children.length;
                 let hours = tbody_inner.children[len - 4].innerHTML.trim().split("->");
                 let subjects = tbody_inner.children[len - 2].innerHTML.trim().split("->");
+                let substitution = tbody_inner.children[len - 1].innerHTML.trim();
+
+                subObj["class"] = className
                 subObj["teacher"] = tbody_inner.children[len - 3].innerHTML.trim();
                 subObj["hour"] = hours[0];
                 subObj["subject"] = subjects[0];
 
-                (hours.length>1)?
+                if(hours.length>1){
                     subObj["subHour"] = hours[1]
-                :
-                    subObj["subHour"] = "a"
+                }
+                else{
+                    subObj["subHour"] = ""
 
-                (subjects.length>1)?
+                }
+
+                if(subjects.length>1){
                     subObj["subSubjects"] = subjects[1]
-                :
-                    subObj["subSubjects"] = "b"
+                }
+                else{
+                    subObj["subSubjects"] = ""
+                }
                 
                 
                 subTable.push(subObj);
@@ -131,7 +141,7 @@ class request {
             //return table;
             return subListObj;
         }) ));
-        //html = (await page.$$eval("body", divs => divs.map(div => div)));
+        //const html = (await page.$$eval("body", divs => divs.map(div => div)));
         //console.log(substitutions);
         await browser.close();
         return substitutionObject;
