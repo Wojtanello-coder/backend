@@ -72,7 +72,8 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        let substitutionObject = (await page.$$eval(".entry>table>tbody", divs => divs.map(tbody => {
+        let substitutionObject = (await page.$$eval(".entry", divs => divs.map(entry => { //>table>tbody
+            tbody = entry.children[entry.children.length-2].children[0]
             let table = [];
             let subTable = [];
             //let r = Replacement();
@@ -126,9 +127,7 @@ class request {
             let subListObj = {
                 "desc": "opis",
                 "date": "data",
-                "teachers": [
-                    // nieobecni nauczyciele
-                ],
+                "teachers": entry.children[9].children[0].children[1].innerHTML.split(", "),
                 "substitutions": subTable
             }
             //return table;
