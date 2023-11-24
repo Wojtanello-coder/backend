@@ -81,16 +81,16 @@ class request {
             let className = "";
             for (let i = 1; i < tbody.children.length; i++) {
                 let subObj = {};
-                //     "class": "",
-                //     "teacher": "",
-                //     "hour": 0,
-                //     "subject": "",
-                //     "room": "",
-                //     "cancelled": false,
-                //     "substitution": "",
-                //     "subHour": 0,
-                //     "subSubject": "",
-                //     "subRoom": ""
+                //     "class": "", // Done
+                //     "teacher": "", // Done
+                //     "hour": 0, // Done
+                //     "subject": "", // Done
+                //     "room": "", // Done
+                //     "cancelled": false, // Done
+                //     "subsTeacher": "",
+                //     "subHour": 0, // Done
+                //     "subSubject": "", // Done
+                //     "subRoom": "" // Done
 
                 // }
                 let tbody_inner = tbody.children[i]; // div about single sub (has data)
@@ -103,29 +103,22 @@ class request {
                     table.at(-1).push(tbody_inner.children[0].innerHTML.trim());
                 }
                 let len = tbody_inner.children.length;
-                let hours = tbody_inner.children[len - 4].innerHTML.trim().split("->");
-                let subjects = tbody_inner.children[len - 2].innerHTML.trim().split("->");
-                let substitution = tbody_inner.children[len - 1].innerHTML.trim();
+                let hours = tbody_inner.children[len - 4].innerHTML.trim().split("-&gt;");
+                let subjects = tbody_inner.children[len - 2].innerHTML.trim().split("-&gt;");
+                let substitution = tbody_inner.children[len - 1].innerHTML.trim().split(" / ");
+                let rooms = (substitution.length == 2) ? substitution[1].trim().split(" -&gt; ") : ["", ""];
 
                 subObj["class"] = className
                 subObj["teacher"] = tbody_inner.children[len - 3].innerHTML.trim();
                 subObj["hour"] = hours[0];
                 subObj["subject"] = subjects[0];
+                subObj["room"] = rooms[0];
+                subObj["cancelled"] = substitution=="Odwołane" ? true : false;
+                subObj["subTeacher"] = (substitution.length == 1) ? substitution[0] : "";
 
-                if(hours.length>1){
-                    subObj["subHour"] = hours[1]
-                }
-                else{
-                    subObj["subHour"] = ""
-
-                }
-
-                if(subjects.length>1){
-                    subObj["subSubjects"] = subjects[1]
-                }
-                else{
-                    subObj["subSubjects"] = ""
-                }
+                subObj["subHour"] = (hours.length>1) ? hours[1] : ""
+                subObj["subSubject"] = (subjects.length>1) ? subjects[1] : ""
+                subObj["subRoom"] = rooms[1];
                 
                 
                 subTable.push(subObj);
