@@ -3,12 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const { Replacement } = require('./replacement');
 const Reqs = require('./puppeteer');
+const { pass } = require('./pass.json')
 
 const app = express();
 app.use(cors());
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://multiplan:cOZDVaSF7SZZmg9l@cluster0.pdmzibl.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://multiplan:" + pass + "@cluster0.pdmzibl.mongodb.net/?retryWrites=true&w=majority";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
