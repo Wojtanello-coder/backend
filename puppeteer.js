@@ -8,7 +8,7 @@ class request {
         await page.goto(link);
         await page.type(".validate", "6565");
         await page.click(".btn");
-        await page.goto(link + "?" + type + "=" + url);
+        await page.goto(link);
         let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
         await browser.close();
         return lessons;
@@ -79,10 +79,9 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        await page.type(".validate", "6565");
-        await page.click(".btn");
-        await page.goto(link + "?" + type + "=" + url);
-        await page.screenshot({ path: "test2.jpg" });
+        await page.type(".form-control", "6565");
+        await page.click(".btn-primary");
+        await page.screenshot({ path: "test2.jpg", quality: 1 });
         let substitutionObject = (await page.$$eval(".entry", divs => divs.map(entry => { //>table>tbody
             tbody = entry.children[entry.children.length-2].children[0]
             let table = [];
