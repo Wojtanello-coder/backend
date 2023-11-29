@@ -80,8 +80,7 @@ class request {
         const page = await browser.newPage();
         await page.goto(link);
         await page.type(".form-control", "6565");
-        await page.click(".btn-primary");
-        await page.waitForNavigation();
+        //await page.click(".btn-primary");
         await page.screenshot({ path: "test2.jpg", quality: 1 });
         let substitutionObject = (await page.$$eval(".entry", divs => divs.map(entry => { //>table>tbody
             let tbody = entry.children[entry.children.length-2].children[0]
@@ -138,7 +137,7 @@ class request {
             let subListObj = {
                 "desc": "opis",
                 "date": "data",
-                "teachers": entry.children[10].children[0].children[1].innerHTML.split(", "), // 10 isn't consistant
+                "teachers": entry.children[11].children[0].children[1].innerHTML.split(", "), // 10 isn't consistant
                 "substitutions": subTable
             }
             //return table;
