@@ -9,8 +9,8 @@ const app = express();
 app.use(cors());
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://" + user + ":" + pass + "@cluster0.pdmzibl.mongodb.net/?retryWrites=true&w=majority";
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const uri = "mongodb+srv://" + user + ":" + pass + "@cluster0.pdmzibl.mongodb.net/";
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -18,30 +18,27 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
 
 app.get('/', async (req, res) => {
     console.log(`${Date()} - ${req.method} request at ${req.path}`)
     let data = [];
     try {
         data = await Reqs.GetClassLinks("http://plan.ckziu.jaworzno.pl/");
+        await client.connect();
+        const db = client.db("Cluster0");
+        const coll = db.collection("lessonsPlan");
+        
+        const docs = [
+            data
+        ];
+        await coll.dropIndexes();
+        const result = await coll.insertMany(data);
     }
     catch (err) {
         console.log(`${Date()} - ${err}`)
     }
     finally {
+        await client.close();
         console.log("Done")
     }
     

@@ -8,7 +8,7 @@ class request {
         await page.goto(link);
         let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
         await browser.close();
-        return lessons;
+        return lessons.map(lesson => { return { "name": lesson[0], "link": lesson[1] } });
     }
 
 
@@ -110,7 +110,7 @@ class request {
                 (hours.length>1)?
                     subObj["subHour"] = hours[1]
                 :
-                    subObj["subHour"] = "a"
+                    subObj["subHour"] = "t"
 
                 (subjects.length>1)?
                     subObj["subSubjects"] = subjects[1]
@@ -123,9 +123,7 @@ class request {
             let subListObj = {
                 "desc": "opis",
                 "date": "data",
-                "teachers": [
-                    // nieobecni nauczyciele
-                ],
+                "teachers": entry.children[10].children[0].children[1].innerHTML.split(", "),
                 "substitutions": subTable
             }
             //return table;
