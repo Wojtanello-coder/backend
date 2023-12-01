@@ -77,8 +77,8 @@ class request {
             while(lesson.length) _lesson.push(lesson.splice(0,4));
             _lesson = _lesson.map(el => { return {
                     "name": el[0],
-                    "subject": el[1],
-                    "room": el[2],
+                    "room": el[1],
+                    "subject": el[2],
                     "group": el[3]
             }})
             return _lesson});
@@ -92,8 +92,8 @@ class request {
 
             // ls.push({
             //     "name": lesson[i],
-            //     "subject": lesson[i+1],
-            //     "room": lesson[i+2],
+            //     "room": lesson[i+1],
+            //     "subject": lesson[i+2],
             //     "group": lesson[i+3]
             // });
 
