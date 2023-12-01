@@ -63,12 +63,15 @@ app.get('/plan/:type/:planUrl', async (req, res) => {
     //console.log(data);
 });
 
-app.get('/day/:type/:planUrl', async (req, res) => {
+app.get('/day/:type/:planUrl/:', async (req, res) => {
     console.log(`${Date()} - ${req.method} request at ${req.path}`)
     let data = [];
     try {
         subs = await Reqs.getSubstitutions("https://www.ckziu.jaworzno.pl/zastepstwa/");
         data = await Reqs.getPlanTable("http://plan.ckziu.jaworzno.pl/", req.params.type, req.params.planUrl)
+        //console.log(subs);
+        console.log(subs[0].substitutions.filter(sub => { return sub.class == "5d TE"}));
+        //console.log(data);
     }
     catch (err) {
         console.log(`${Date()} - ${err}`)
