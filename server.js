@@ -69,10 +69,12 @@ app.get('/day/:type/:planUrl', async (req, res) => {
     try {
         subs = await Reqs.getSubstitutions("https://www.ckziu.jaworzno.pl/zastepstwa/");
         data = await Reqs.getPlanTable("http://plan.ckziu.jaworzno.pl/", req.params.type, req.params.planUrl)
-
-        // console.log(subs[0].substitutions.filter(sub => { return sub.class == "5d TE"}));
+        // missing: class name from plans, instead of classid ("5d TE"/"BF0B9B0E2C34F558"); day number from subs (4 - friday);
+        data.day = 4
+        console.log(subs[0].substitutions.filter(sub => { sub.classid = "BF0B9B0E2C34F558"; return sub.class == "5d TE"}));
         console.log(data.data[4]);
-        //data = data.data[4]
+        data.data = data.data[4];
+        
     }
     catch (err) {
         console.log(`${Date()} - ${err}`)
