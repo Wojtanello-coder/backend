@@ -3,20 +3,42 @@ const express = require('express');
 const cors = require('cors');
 const { Replacement } = require('./replacement');
 const Reqs = require('./puppeteer');
+const { user, pass } = require('./pass.json')
 
 const app = express();
 app.use(cors());
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://" + user + ":" + pass + "@cluster0.pdmzibl.mongodb.net/";
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
 app.get('/', async (req, res) => {
     console.log(`${Date()} - ${req.method} request at ${req.path}`)
     let data = [];
     try {
         data = await Reqs.GetClassLinks("http://plan.ckziu.jaworzno.pl/");
+        await client.connect();
+        const db = client.db("Cluster0");
+        const coll = db.collection("lessonsPlan");
+        
+        const docs = [
+            data
+        ];
+        await coll.dropIndexes();
+        const result = await coll.insertMany(data);
     }
     catch (err) {
         console.log(`${Date()} - ${err}`)
     }
     finally {
+        await client.close();
         console.log("Done")
     }
     

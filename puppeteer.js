@@ -11,7 +11,7 @@ class request {
         // await page.goto(link);
         let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
         await browser.close();
-        return lessons.map(lesson => {return{ "name": lesson[0], "link": lesson[1] }});
+        return lessons.map(lesson => { return { "name": lesson[0], "link": lesson[1] } });
     }
 
 
