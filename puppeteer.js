@@ -6,9 +6,12 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
+        // await page.type(".validate", "6565");
+        // await page.click(".btn");
+        // await page.goto(link);
         let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
         await browser.close();
-        return lessons;
+        return lessons.map(lesson => {return{ "name": lesson[0], "link": lesson[1] }});
     }
 
 
@@ -19,6 +22,10 @@ class request {
         const page = await browser.newPage();
         //console.log(link + "?" + type + "=" + url);
         await page.goto(link + "?" + type + "=" + url);
+        // await page.type(".validate", "6565");
+        // await page.click(".btn");
+        // await page.goto(link + "?" + type + "=" + url);
+        // await page.screenshot({ path: `./test.jpg`});
         let dayLength = (await page.$$eval(".hours", options => options.map(option => {
             return option.children.length - 1;
         }) ));
@@ -63,7 +70,39 @@ class request {
         }
         await browser.close();
         dayLength = dayLength[0];
-        return { "lesson": lessons, "dayLength": dayLength };
+
+
+        lessons = lessons.map(lesson => {
+            let _lesson = [];
+            while(lesson.length) _lesson.push(lesson.splice(0,4));
+            _lesson = _lesson.map(el => { return {
+                    "name": el[0],
+                    "subject": el[1],
+                    "room": el[2],
+                    "group": el[3]
+            }})
+            return _lesson});
+        let days = []
+        while(lessons.length) days.push(lessons.splice(0,dayLength));
+        //days.push(lessons.map())
+        
+
+
+
+
+            // ls.push({
+            //     "name": lesson[i],
+            //     "subject": lesson[i+1],
+            //     "room": lesson[i+2],
+            //     "group": lesson[i+3]
+            // });
+
+        return { 
+            "name": url, 
+            "date": Date.now(), 
+            "type": type, 
+            "data": days 
+        };
     }
 
 
@@ -72,7 +111,11 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        let substitutionObject = (await page.$$eval(".entry>table>tbody", divs => divs.map(tbody => {
+        // await page.type(".form-control", "6565");
+        // await page.click(".btn-primary");
+        // await page.screenshot({ path: "test2.jpg", quality: 1 });
+        let substitutionObject = (await page.$$eval(".entry", divs => divs.map(entry => { //>table>tbody
+            let tbody = entry.children[entry.children.length-2].children[0]
             let table = [];
             let subTable = [];
             //let r = Replacement();
@@ -110,11 +153,11 @@ class request {
 
                 subObj["class"] = className
                 subObj["teacher"] = tbody_inner.children[len - 3].innerHTML.trim();
-                subObj["hour"] = hours[0];
+                subObj["hour"] = hours[0].split("/")[0];
                 subObj["subject"] = subjects[0];
                 subObj["room"] = rooms[0];
                 subObj["cancelled"] = substitution=="Odwołane" ? true : false;
-                subObj["subTeacher"] = (substitution.length == 1) ? substitution[0] : "";
+                subObj["subTeacher"] = (substitution.length == 2) ? substitution[0] : "";
 
                 subObj["subHour"] = (hours.length>1) ? hours[1] : ""
                 subObj["subSubject"] = (subjects.length>1) ? subjects[1] : ""
@@ -125,10 +168,8 @@ class request {
             }
             let subListObj = {
                 "desc": "opis",
-                "date": "data",
-                "teachers": [
-                    // nieobecni nauczyciele
-                ],
+                "date": Date.now(),
+                // "teachers": entry.children[11].children[0].children[1].innerHTML.split(", "), // 10 isn't consistant
                 "substitutions": subTable
             }
             //return table;

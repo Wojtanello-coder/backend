@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 pass.json
+test.js
 
 # testing
 /coverage
