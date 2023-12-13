@@ -122,18 +122,37 @@ const insertSubsToPlan = (subs, plan, startHour) => {
             })
             if(hourSubs.length > 0){
                 hourSubs = hourSubs[0]
-                console.log(subs[0].hour + " - " + i.toString() + " - " + startHour.toString());
-                console.log(plan[i][j]);
-                console.log(hourSubs);
-                console.log("------");
+                // console.log(subs[0].hour + " - " + i.toString() + " - " + startHour.toString());
+                // console.log(plan[i][j]);
+                // console.log(hourSubs);
+                console.log("$");
 
                 // changing for every sub possibility
                 if (hourSubs.cancelled) {
                     plan[i].splice(j, 1);
-                    
+                    console.log("cancelled");
+                    continue;
+                }
+                if(hourSubs.subTeacher != '') {
+                    plan[i][j].name = hourSubs.subTeacher
+                    console.log("changed teacher");
+                }
+                if(hourSubs.subHour != '') {
+                    plan[i].push(plan[i][j]);
+                    plan[i].splice(j, 1);
+                    console.log("changed hour");
+                }
+                if(hourSubs.subSubject != '') {
+                    plan[i][j].subject = hourSubs.subSubject
+                    console.log("changed subject");
+                }
+                if(hourSubs.subRoom != '') {
+                    plan[i][j].room = hourSubs.subRoom
+                    console.log("changed room");
                 }
             }
         }
+        console.log("------");
     }
     return plan;
 }
