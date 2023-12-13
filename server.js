@@ -70,11 +70,13 @@ app.get('/day/:type/:planUrl', async (req, res) => {
         subs = await Reqs.getSubstitutions("https://www.ckziu.jaworzno.pl/zastepstwa/");
         data = await Reqs.getPlanTable("http://plan.ckziu.jaworzno.pl/", req.params.type, req.params.planUrl)
         // missing: class name from plans, instead of classid ("5d TE"/"BF0B9B0E2C34F558"); day number from subs (4 - friday);
-        //const d = new Date();
-        const _subs = subs[0].substitutions.filter(sub => { sub.classid = data.name; return sub.class == dataFile[data.name]})
-        const _data = data.data[(new Date().getDay()-1)%5]
+        const d = (new Date().getDay()-1)%5
+        let _subs = subs[0].substitutions.filter(sub => { sub.classid = data.name; return sub.class == dataFile[data.name]})
+        let _data = data.data[d]
 
-        insertSubsToPlan(_subs, _data, parseInt(data.startHour))
+        _data = insertSubsToPlan(_subs, _data, parseInt(data.startHour))
+
+        data.data[d] = _data
 
         // console.log(_subs);
         data.subs = _subs
@@ -114,14 +116,24 @@ app.listen(4001);
 const insertSubsToPlan = (subs, plan, startHour) => {
 
     for (let i = 0; i < plan.length; i++) {
-        plan[i].forEach(pln => {
+        for (let j = 0; j < plan[i].length; j++) {
             hourSubs = subs.filter((sub) => {
-                return (parseInt(sub.hour) == i + startHour) && (sub.teacher == pln.name);
+                return (parseInt(sub.hour) == i + startHour) && (sub.teacher == plan[i][j].name);
             })
-            console.log(subs[0].hour + " - " + i.toString() + " - " + startHour.toString());
-            console.log(pln);
-            console.log(hourSubs);
-            console.log("------");
-        });
+            if(hourSubs.length > 0){
+                hourSubs = hourSubs[0]
+                console.log(subs[0].hour + " - " + i.toString() + " - " + startHour.toString());
+                console.log(plan[i][j]);
+                console.log(hourSubs);
+                console.log("------");
+
+                // changing for every sub possibility
+                if (hourSubs.cancelled) {
+                    plan[i].splice(j, 1);
+                    
+                }
+            }
+        }
     }
+    return plan;
 }
