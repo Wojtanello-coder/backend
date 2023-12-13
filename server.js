@@ -3,11 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const { Replacement } = require('./replacement');
 const Reqs = require('./puppeteer');
-const { user, pass } = require('./pass.json')
+const { user, pass } = require('./pass.json');
+const dataFile = require('./data.json');
 
 const app = express();
 app.use(cors());
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://" + user + ":" + pass + "@cluster0.pdmzibl.mongodb.net/";
 
@@ -70,10 +70,16 @@ app.get('/day/:type/:planUrl', async (req, res) => {
         subs = await Reqs.getSubstitutions("https://www.ckziu.jaworzno.pl/zastepstwa/");
         data = await Reqs.getPlanTable("http://plan.ckziu.jaworzno.pl/", req.params.type, req.params.planUrl)
         // missing: class name from plans, instead of classid ("5d TE"/"BF0B9B0E2C34F558"); day number from subs (4 - friday);
-        data.day = 4
-        console.log(subs[0].substitutions.filter(sub => { sub.classid = "BF0B9B0E2C34F558"; return sub.class == "5d TE"}));
-        console.log(data.data[4]);
-        data.data = data.data[4];
+        //const d = new Date();
+        const _subs = subs[0].substitutions.filter(sub => { sub.classid = data.name; return sub.class == dataFile[data.name]})
+        const _data = data.data[(new Date().getDay()-1)%5]
+
+        insertSubsToPlan(_subs, _data, parseInt(data.startHour))
+
+        // console.log(_subs);
+        data.subs = _subs
+        // console.log(_data);
+        data.data = _data;
         
     }
     catch (err) {
@@ -104,3 +110,18 @@ app.get('/zastepstwa', async (req, res) => {
     //console.log(data);
 });
 app.listen(4001);
+
+const insertSubsToPlan = (subs, plan, startHour) => {
+
+    for (let i = 0; i < plan.length; i++) {
+        plan[i].forEach(pln => {
+            hourSubs = subs.filter((sub) => {
+                return (parseInt(sub.hour) == i + startHour) && (sub.teacher == pln.name);
+            })
+            console.log(subs[0].hour + " - " + i.toString() + " - " + startHour.toString());
+            console.log(pln);
+            console.log(hourSubs);
+            console.log("------");
+        });
+    }
+}

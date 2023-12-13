@@ -1,54 +1,73 @@
-[
-    {
-        "id": 0,
-        "date": "03-11-2023 13:46:15",
-        "plan": [
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ],
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ],
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ],
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "3/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ]
-        ] 
-    },
-    {
-        "id": 1,
-        "date": "03-11-2023 13:48:01",
-        "plan": [
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ],
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ],
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ],
-            [ 
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" },
-                { "teacher": "Woszczyna-Kozioł Ilona", "room": "4/III", "subject": "zajęcia z wychowawcą", "group": "Cała klasa" }
-            ]
-        ] 
-    }
-]
+{
+    "BEC62410BD3E7E44": "1a T5",
+    "4BEE37BA37491D0A": "1b T5",
+    "DB456E53D72BFFF8": "#1bT5-ASz",
+    "AD64C8A97D7CC707": "2a T5",
+    "A058E178080438E1": "#2aT5-KK*",
+    "22A63BE41220A9C6": "2b T5",
+    "8A54888A1B549BAB": "#2bT5-JL",
+    "8E857ADE4036CAF6": "3a T5",
+    "3A1A8CABFDAD24FC": "3b T5",
+    "516187E436AE6A46": "#3bT5-MP",
+    "67775BB5D4E9F32F": "4a T5",
+    "E36446B6F3CBCD6F": "#4aT5-NW",
+    "AD9AC06FB3A602AE": "4b T5",
+    "941681524221F911": "5c T5",
+    "B9DC669D532EF303": "@5cT5-KG",
+    "D75D0E72EECDAA3B": "#5cT5-JG*",
+    "479466885A1682B2": "@5cT5-DH",
+    "AD00ED04F6F4A7CD": "@5cT5-KM",
+    "FF5D986234B737E6": "5d T5",
+    "89CDB4433B478707": "#5dT5-JL*",
+    "555B28B4DE8FED1F": "@5dT5-WR",
+    "CED707CD9D7F32D4": "1a T6",
+    "F597D650129850F5": "@1aT6-FL",
+    "BC3CBA383B7A8E43": "#1aT6-DS",
+    "087517C47BF4EAC4": "1b T6",
+    "28FFF63022BCD20D": "#1bT6-MB",
+    "19C9776A88720625": "#1bT6-OK",
+    "110340E9893DF7D0": "#1bT6-JM",
+    "79BC8E6B59286A7A": "1c T6",
+    "BA17C5A95C7CE1B3": "#1cT6-SP",
+    "3A728D9D016FB4A7": "2a T6",
+    "4A47CC07D2532E3A": "#2aT6-FW*",
+    "2D227862EE23D59C": "2b T6",
+    "E46607E654866CD4": "#2bT6-AK*",
+    "872E91FB548BF7FA": "2c T6",
+    "037053FED71AD75F": "#2cT6-KD",
+    "9F6E52A87723F46A": "#2cT6-PT",
+    "C49D6FB9C274C857": "#2cT6-FZ*",
+    "E56A0E8C65FFCD29": "2d T6",
+    "A33BB9C104FD1BE6": "3a T6",
+    "A6B5D9CA36264B6F": "@3aT6-EK",
+    "D7FBFD0FE7307DA5": "#3aT6-DK",
+    "CD9100E7682625A3": "#3aT6-MK",
+    "35888D0BFF5E4B0E": "3b T6",
+    "8CF24CB76232AEBA": "@3bT6-JCh",
+    "3D00704322C649FC": "4a T6",
+    "3D7183027705E811": "#4aT6-BK*",
+    "FD8AB99B596DB0AD": "#4aT6-JS",
+    "D5576EDF8C184385": "4b T6",
+    "6C0DFB1A415F08EB": "@4bT6-DCh",
+    "C7EE684523791690": "5c T6",
+    "D2B4BCB05B2B983A": "#5cT6-DM",
+    "0FECF995D0F0214B": "5d T6",
+    "549BC79D84D53598": "1a TE",
+    "289BAE184A973BB3": "1b TE",
+    "A78659443B974291": "#1bTE-PSt",
+    "90523D7EF3282BA0": "2a TE",
+    "74FE178FCE2E55A3": "#2aTE-IK",
+    "103A8ECD09D9C3B2": "2b TE",
+    "6DE4949CF5C7E362": "#2bTE-MJ*",
+    "AC67503B3625CF1A": "2c TE",
+    "9FE126F783736D83": "3a TE",
+    "366DB235550802B5": "#3aTE-DD*",
+    "2DE2CF45240B4E58": "3b TE",
+    "258C2575A98BE6CC": "#3bTE-KCz",
+    "E72981605C487041": "4a TE",
+    "C4B541ABCAD6DE6F": "4b TE",
+    "D68494CBB7F478B9": "#4bTE-KP",
+    "579B5615B2685976": "5c TE",
+    "BF0B9B0E2C34F558": "5d TE",
+    "2E8F99F3DA7A10EA": "#5dTE-KC*"
+}

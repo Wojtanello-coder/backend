@@ -1,0 +1,81 @@
+{
+    "day-wednesday": {
+        "name": "BF0B9B0E2C34F558",
+        "date": 1702502168248,
+        "type": "classid",
+        "data": [
+            [],
+            [
+                {
+                    "name": "Bubak Włodzimierz",
+                    "room": "105/V",
+                    "subject": "z-P programowanie aplikacji desktopowych",
+                    "group": "1. Grupa"
+                }
+            ],
+            [
+                {
+                    "name": "Bubak Włodzimierz",
+                    "room": "105/V",
+                    "subject": "z-P programowanie aplikacji desktopowych",
+                    "group": "1. Grupa"
+                }
+            ],
+            [
+                {
+                    "name": "Dąbek-Nagacz Mariola",
+                    "room": "3/III",
+                    "subject": "matematyka",
+                    "group": "Cała klasa"
+                }
+            ],
+            [
+                {
+                    "name": "Dąbek-Nagacz Mariola",
+                    "room": "3/III",
+                    "subject": "matematyka",
+                    "group": "Cała klasa"
+                }
+            ],
+            [
+                {
+                    "name": "Dobosz Łukasz",
+                    "room": "1/V",
+                    "subject": "język polski",
+                    "group": "Cała klasa"
+                }
+            ],
+            [
+                {
+                    "name": "Dobosz Łukasz",
+                    "room": "1/V",
+                    "subject": "język polski",
+                    "group": "Cała klasa"
+                }
+            ],
+            [
+                {
+                    "name": "Papaj Janusz",
+                    "room": "211/V",
+                    "subject": "język angielski R",
+                    "group": "1. Grupa"
+                },
+                {
+                    "name": "Stawska Ewelina",
+                    "room": "1/II",
+                    "subject": "język angielski R",
+                    "group": "2. Grupa"
+                }
+            ],
+            [
+                {
+                    "name": "Dobosz Łukasz",
+                    "room": "1/V",
+                    "subject": "godz. dyr.",
+                    "group": "Cała klasa"
+                }
+            ],
+            []
+        ]
+    }
+}
