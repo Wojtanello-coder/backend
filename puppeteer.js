@@ -111,9 +111,9 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        // await page.type(".form-control", "6565");
-        // await page.click(".btn-primary");
-        // await page.screenshot({ path: "test2.jpg", quality: 1 });
+        // await page.type(".entry>form>.form-control", "6565");
+        // await page.click(".entry>form>.btn-primary");
+        // await page.screenshot({ path: "test2.jpg", quality: 100 });
         let substitutionObject = (await page.$$eval(".entry", divs => divs.map(entry => { //>table>tbody
             let tbody = entry.children[entry.children.length-2].children[0]
             let table = [];
