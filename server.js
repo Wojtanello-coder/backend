@@ -79,9 +79,9 @@ app.get('/day/:type/:planUrl', async (req, res) => {
         data.data[d] = _data
 
         // console.log(_subs);
-        data.subs = _subs
+        // data.subs = _subs
         // console.log(_data);
-        data.data = _data;
+        // data.data = _data;
         
     }
     catch (err) {
