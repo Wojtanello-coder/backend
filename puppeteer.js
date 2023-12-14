@@ -6,9 +6,9 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        await page.type(".validate", "6565");
-        await page.click(".btn");
-        await page.goto(link);
+        // await page.type(".validate", "6565");
+        // await page.click(".btn");
+        // await page.goto(link);
         let lessons = (await page.$$eval(".link", options => { return options.map(option => [option.innerHTML, option.href.substring(30)])}));
         await browser.close();
         return lessons.map(lesson => { return { "name": lesson[0], "link": lesson[1] } });
@@ -22,9 +22,9 @@ class request {
         const page = await browser.newPage();
         //console.log(link + "?" + type + "=" + url);
         await page.goto(link + "?" + type + "=" + url);
-        await page.type(".validate", "6565");
-        await page.click(".btn");
-        await page.goto(link + "?" + type + "=" + url);
+        // await page.type(".validate", "6565");
+        // await page.click(".btn");
+        // await page.goto(link + "?" + type + "=" + url);
         // await page.screenshot({ path: `./test.jpg`});
         let dayLength = (await page.$$eval(".hours", options => options.map(option => {
             return option.children.length - 1;
@@ -115,9 +115,9 @@ class request {
         const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         await page.goto(link);
-        await page.type(".entry>form>.form-control", "6565");
-        await page.click(".entry>form>.btn-primary");
-        await page.screenshot({ path: "test2.jpg", quality: 100 });
+        // await page.type(".entry>form>.form-control", "6565");
+        // await page.click(".entry>form>.btn-primary");
+        // await page.screenshot({ path: "test2.jpg", quality: 100 });
         let substitutionObject = (await page.$$eval(".entry", divs => divs.map(entry => { //>table>tbody
             let tbody = entry.children[entry.children.length-2].children[0]
             let table = [];
