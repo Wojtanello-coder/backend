@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { Replacement } = require('./replacement');
 const Reqs = require('./puppeteer');
-const { user, pass } = require('./pass.json');
+// const { user, pass } = require('./pass.json');
 const dataFile = require('./data.json');
 
 const app = express();
