@@ -8,7 +8,7 @@ const dataFile = require('./data.json');
 
 const app = express();
 app.use(cors());
-const { MongoClient, ServerApiVersion } = require('mongodb');
+// const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = "mongodb+srv://" + user + ":" + pass + "@cluster0.pdmzibl.mongodb.net/";
 
 // const client = new MongoClient(uri, {
@@ -38,7 +38,7 @@ app.get('/', async (req, res) => {
         console.log(`${Date()} - ${err}`)
     }
     finally {
-        await client.close();
+        // await client.close();
         console.log("Done")
     }
     
@@ -125,34 +125,33 @@ const insertSubsToPlan = (subs, plan, startHour) => {
                 // console.log(subs[0].hour + " - " + i.toString() + " - " + startHour.toString());
                 // console.log(plan[i][j]);
                 // console.log(hourSubs);
-                console.log("$");
+                //console.log("$");
 
                 // changing for every sub possibility
                 if (hourSubs.cancelled) {
                     plan[i].splice(j, 1);
-                    console.log("cancelled");
+                    //console.log("cancelled");
                     continue;
                 }
                 if(hourSubs.subTeacher != '') {
                     plan[i][j].name = hourSubs.subTeacher
-                    console.log("changed teacher");
+                    //console.log("changed teacher");
                 }
                 if(hourSubs.subHour != '') {
                     plan[i].push(plan[i][j]);
                     plan[i].splice(j, 1);
-                    console.log("changed hour");
+                    //console.log("changed hour");
                 }
                 if(hourSubs.subSubject != '') {
                     plan[i][j].subject = hourSubs.subSubject
-                    console.log("changed subject");
+                    //console.log("changed subject");
                 }
                 if(hourSubs.subRoom != '') {
                     plan[i][j].room = hourSubs.subRoom
-                    console.log("changed room");
+                    //console.log("changed room");
                 }
             }
         }
-        console.log("------");
     }
     return plan;
 }
